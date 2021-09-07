@@ -1,0 +1,39 @@
+server:
+  port: 801
+
+spring:
+  application:
+    name: hospital-patient-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 119.29.14.37:8848
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: localhost:8080
+      datasource:
+        ds1:
+          nacos:
+            server-addr: 119.29.14.37:8848
+            dataId: hospital-patient-consumer
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+feign:
+  sentinel:
+    enabled: true # 激活Sentinel对Feign的支持
+
+
+logging:
+  level:
+    com.nocdy.hospital.service.UserFeignService: debug

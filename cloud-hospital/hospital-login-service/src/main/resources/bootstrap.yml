@@ -1,0 +1,15 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: hospital-login
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 119.29.14.37:8848
+      config:
+        server-addr: 119.29.14.37:8848
+        file-extension: yaml
+
+
+
