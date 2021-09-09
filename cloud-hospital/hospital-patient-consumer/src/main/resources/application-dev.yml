@@ -20,6 +20,16 @@ spring:
             groupId: DEFAULT_GROUP
             data-type: json
             rule-type: flow
+  redis:
+    password: 12345
+    host: 119.29.14.37
+    database: 0
+    port: 6379
+  session:
+    store-type: redis
+    timeout: 900
+    redis:
+      namespace: session:redis
 
 
 management:
@@ -34,6 +44,7 @@ feign:
     enabled: true # 激活Sentinel对Feign的支持
 
 
+
 logging:
   level:
-    com.nocdy.hospital.service.UserFeignService: debug
+    com.nocdy.hospital.service.*: debug

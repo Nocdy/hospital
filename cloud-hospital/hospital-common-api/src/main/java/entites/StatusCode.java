@@ -1,6 +1,5 @@
 package entites;
 
-import lombok.Data;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,10 +13,13 @@ import org.springframework.stereotype.Component;
 public class StatusCode {
 
     public enum Status{
+
         //业务失败
        ERROR(1001,"业务失败"),
        //业务成功
-       SUCCESS(1002,"业务成功");
+       SUCCESS(1002,"业务成功"),
+       //请求业务
+       REQUEST(1003,"请求业务");
 
        private  int code;
        private String message;

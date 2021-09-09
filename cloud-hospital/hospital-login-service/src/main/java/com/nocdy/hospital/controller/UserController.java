@@ -6,10 +6,12 @@ import entites.CommonResult;
 import entites.StatusCode;
 import entites.User;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 
 /**
  * 登录与注册控制器
@@ -19,15 +21,18 @@ import javax.servlet.http.HttpSession;
  */
 @RestController
 @Slf4j
+@RefreshScope
 public class UserController {
 
     @Resource
     private UserService userService;
 
     @PostMapping("/login")
-    public CommonResult userLogin(@RequestBody User user,
-                                  HttpSession session){
-        User getUser=userService.getById(user.getId());
+    public CommonResult userLogin(@RequestBody User user){
+        QueryWrapper<User> queryWrapper=new QueryWrapper<>();
+        queryWrapper
+                .eq("name",user.getName());
+        User getUser=userService.getOne(queryWrapper);
         if(getUser==null){
            return new CommonResult<>(StatusCode.Status.ERROR.getCode(),
                    StatusCode.Status.ERROR.getMessage(),
@@ -35,10 +40,9 @@ public class UserController {
         }
         else{
             if(getUser.getPassword().equals(user.getPassword())){
-                session.setAttribute("User",user);
-                return new CommonResult<>(StatusCode.Status.SUCCESS.getCode(),
+                return new CommonResult<User>(StatusCode.Status.SUCCESS.getCode(),
                         StatusCode.Status.SUCCESS.getMessage(),
-                        user.getName());
+                        getUser);
             }
             else {
                 return new CommonResult<>(StatusCode.Status.ERROR.getCode(),

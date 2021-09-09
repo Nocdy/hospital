@@ -21,7 +21,7 @@ public interface UserFeignService {
     /**
      * 用户登录服务调用
      * @param user 表单提交内容
-     *
+     * @return 返回common结果
      */
     @PostMapping("/login")
     CommonResult userLogin(@RequestBody User user);
@@ -30,7 +30,7 @@ public interface UserFeignService {
     /**
      * 用户注册服务调用
      * @param user 表单提交内容
-     *
+     * @return 返回common结果
      */
     @PostMapping(value = "/registry")
     CommonResult userRegistry(@RequestBody User user);

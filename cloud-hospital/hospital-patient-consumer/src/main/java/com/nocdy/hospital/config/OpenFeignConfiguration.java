@@ -11,10 +11,11 @@ import org.springframework.context.annotation.Configuration;
  * @date 2021年 09月07日 15:54:48
  */
 @Configuration
-public class OpenFeignConfiguration {
+public class OpenFeignConfiguration  {
 
     @Bean
     Logger.Level feignLoggerLevel(){
         return Logger.Level.FULL;
     }
+
 }
