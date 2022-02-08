@@ -1,0 +1,23 @@
+server:
+  port: 6060
+
+spring:
+  application:
+    name: hospital-doctor-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 119.29.14.37:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+  redis:
+    password: 12345
+    host: 119.29.14.37
+    database: 1
+    port: 6379
+  session:
+    redis:
+      namespace: session:redis
+    timeout: 900
+    store-type: redis

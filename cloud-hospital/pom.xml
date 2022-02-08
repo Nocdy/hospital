@@ -15,9 +15,12 @@
     <modules>
         <module>hospital-patient-record-service</module>
         <module>hospital-login-service</module>
+        <module>hospital-register-service</module>
+        <module>hospital-management-service</module>
         <module>hospital-common-api</module>
         <module>hospital-gateway</module>
         <module>hospital-patient-consumer</module>
+        <module>hospital-doctor-consumer</module>
     </modules>
 
 
